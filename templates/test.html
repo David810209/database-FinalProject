@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>測試網站</title>
+    <style>
+        .btn {
+            background-color: rgb(216, 216, 228);
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/selector.css') }}">
+
+    <!-- <script src="{{ url_for("static", filename="js/main.js") }}"></script> -->
+
+</head>
+
+<body>
+    <div class="frame">
+        <div class="left"> 網站標題</div>
+        <div class="right">
+            <div class="item">選項1</div>
+            <div class="item">選項2</div>
+            <button id = 'logoutbutton'class = 'btn'>log out</button>
+            <script>
+                document.getElementById('logoutbutton').addEventListener('click', function() {
+                    var logout = confirm("确定要登出吗？");
+                    if (logout) {
+                        window.location.href = '/logout';
+                    }
+                });
+            </script>
+        </div>
+    </div>
+    <div class = "welcome">         
+        <form action = "/calculate">             
+            max<input type="text" name = "max"/>             
+            min<input type="text" name = "min"/>             
+            <button class = "btn" >計算結果 </button>         
+        </form>                 
+        <hr/>         
+        <form action = "/submit" method = "POST" >             
+            <label for = "fname">first name:</label><br><br>
+            <input type="text" id = "fname" name = "fname"/>    
+            <label for = "lname">last name:</label><br><br>
+            <input type="text" id = "lname" name = "lname"/>    
+            <label for = "pet">pet:</label><br><br>
+            <select name = "pet" id = "pet">
+                <option value="owl">owl</option>
+                <option value="cat">cat</option>
+                <option value="rat">rat</option>
+            </select>
+            <button class = "btn" >典籍送出資料 </button>         
+        </form>         
+
+        <form action = "/show" >  
+            <button class = "btn" >查看資料 </button> 
+        </form>
+        <div class = 'welcome'>
+            <button id="load-data">加載數據</button>
+                <div id="data-display"></div>
+            <script></div>
+                document.getElementById('load-data').addEventListener('click', function() {
+                    fetch('/get-data')
+                    .then(response => response.json())
+                    .then(data => {
+                // 使用 data 中的數據來動態生成表格
+                });
+    });
+</script>
+        <div id = "table-container" style = "display:none;">
+            <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Pet</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in list_users %}
+                  <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.fname }}</td>
+                    <td>{{ row.lname }}</td>
+                    <td>{{ row.pet }}</td>
+                    <td>
+                      <a href="/edit/{{ row.id }}" class="edit-link">Edit</a>
+                      <a href="/delete/{{ row.id }}" class="delete-link">Delete</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <a href = "/">關閉</a>
+              {%if show_table%}
+              <script>
+                document.getElementById('table-container').style.display = 'block';
+              </script>
+              {%endif%}
+        </div>
+    <hr/>      
+    </div>
+    <div class="welcome">
+        <form action="/send_message" method="post">
+            <label for="message">輸入文字:</label>
+            <input type="text" id="message" name="message"><br><br>
+            <button class="btn" type="submit">讓linebot說出這句話</button>
+        </form>
+    </div>
+
+    <div class="welcome">
+
+        <div href="https://google.com/">Google</div>
+        <div style="font-weight:bold;font-size:16px">hiiiii</div>
+
+
+        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" />
+        <img src="{{ url_for('static', filename='hi.png') }}">
+    </div>
+
+    
+
+    <div class="welcome">
+        <div class="text" onclick="change_back();">歡迎光臨</div>
+        <button class="btn" onclick="change();">把歡迎光臨的醜顏色改成綠色</button>
+        <span class="btn" onclick=" inn(this);" onmouseover="inn(this);" onmouseout="out(this);"
+            onmousedown="console.log('按住');" onmouseup="console.log('放開');">點我</span>
+        <div class="text" id="result"></div>
+        <script>
+            let w = document.querySelector(".text");
+            function change() {
+
+                w.style.color = "green";
+            }
+            function change_back() {
+                w.style.color = "red";
+            }
+            function inn(elem) {
+                elem.style.backgroundColor = "red";
+            }
+            function out(elem) {
+                elem.style.backgroundColor = "rgb(216, 216, 228)";
+            }
+
+        </script>
+        <div>
+
+        </div>
+        <span class="btn" onclick="get()">點我2</span>
+        <script>
+            let profile = {
+                firstName: "小明",
+                lastName: "王"
+            };
+            let proxy = new Proxy(profile, {
+                get: function (target, property) {
+                    if (property == "chineseName") {
+                        return target.lastName + target.firstName;
+                    } else {
+                        return target[property];
+                    }
+                }
+            });
+            console.log(proxy.chineseName);
+            console.log(proxy, name);
+            let data = {
+                price: 100,
+                count: 5
+            };
+            let p = new Proxy(data, {
+                get: function (target, property) {
+                    if (property == "total") {
+                        return target.price * target.count;
+                    }
+                    else {
+                        return target[property];
+                    }
+                }
+            });
+            console.log(p.total);
+            console.log("單價", p.price);
+            function get() {
+                fetch("https://cwpeng.github.io/live-records-samples/data/products.json").then(function (response) {
+                    return response.json();
+                }).then(function (data) {
+                    let result = document.querySelector("#result");
+                    for (let i = 0; i < data.length; i++) {
+                        let product = data[i];
+                        result.innerHTML += "<div>" + product.name + "," + product.price + "," + product.description + "</div>";
+                    }
+                });
+            }
+        </script>
+
+    </div>
+
+    <div class="welcome">
+        <div id="title-1" class="title">big</div>
+        <div class="title2">big2</div>
+        <h1 class="keyword">red</h1>
+        <h2>h2</h2>
+        <h3>h3</h3>
+        <!--列表-->
+        <ul>
+            <li>l1</li>
+            <li>l2</li>
+        </ul>
+        <!--有順序的列表-->
+        <ol>
+            <li>order1</li>
+            <li>order2</li>
+
+        </ol>
+        <!--表格-->
+        <table border="1" width="350" cellpadding="30">
+            <tr>
+                <td>1-1</td>
+                <td>2-1</td>
+                <td>3-1</td>
+            </tr>
+            <tr>
+                <td>1-2</td>
+                <td>2-2</td>
+                <td>3-2</td>
+            </tr>
+        </table>
+        <!-- <script>
+            let o = {
+                a: 3,
+                b: 4,
+                show: function () {
+                    console.log("hello");
+                }
+            };
+            console.log(o);
+            o.show();
+            function add(n1, n2) {
+                let result = n1 + n2;
+                console.log(result);
+                return "hello";
+            }
+            let y = add(2, 5);
+            console.log(y);
+            let x = 5;
+            console.log(x);
+            console.log("hello");
+
+            let arr = [];
+            arr.push(3);
+            console.log(arr[0]);
+            let a = { x: 3, y: 4, data: [1, 2, 3] };
+            let b = { ...a };
+            console.log(b.x);
+            let str = JSON.stringify(a);
+            let d = JSON.parse(str);
+            d.data[0] = 4;
+            console.log(a.data[0]);
+            console.log(d.data[0], d.data[1]);
+        </script> -->
+    </div>
+
+</body>
+
+</html>

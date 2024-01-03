@@ -1,0 +1,102 @@
+.frame {
+    display: flex;
+    /*水平*/
+}
+
+.left {
+    flex: none;
+    width: 300px;
+}
+
+.right {
+    display: flex;
+    /*讓下一個項目水平對其*/
+    justify-content: flex-end;
+    flex: auto;
+}
+
+.welcome {
+    height: auto;
+    background-color: aliceblue;
+}
+
+.text {
+    width: 300px;
+    font-weight: bold;
+    font-size: 30px;
+    color: red;
+}
+
+
+
+.item {
+    flex: none;
+    width: 100px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+#title-1 {
+    text-decoration: line-through;
+    text-align: center;
+}
+
+/*class選擇棄*/
+.title {
+    padding:
+        30px;
+    background-color:
+        yellow;
+    margin-top:
+        10px
+}
+
+.title2 {
+    padding:
+        30px;
+    border:
+        10px solid red;
+    width:
+        50%
+}
+
+.keyword {
+    color:
+        red
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.edit-link,
+.delete-link {
+    text-decoration: none;
+    margin-right: 10px;
+    color: #007bff;
+}
+
+.edit-link:hover,
+.delete-link:hover {
+    text-decoration: underline;
+}

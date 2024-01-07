@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>登入</title>
+</head>
+<body class = "container">
+    <div class="block1">
+        <img src="{{ url_for('static', filename='logo.png') }}" width= 100% height= 100%>
+    </div>
+    <div class="block2">
+        <form action="/login" method="POST">
+            <div class = "Signup">Log in</div>
+            <div class = "username">
+                <label for = "username">帳號:</label>
+                <br/>
+                <input type="text" id="username" name="username"/>  
+            </div>
+            <div class = "password">
+                <label for = "password">密碼:</label>
+                <br/>
+                <input type="password" id="password" name="password"/>
+            </div>
+            <div class="button-container">
+                <button>submit</button>
+            </div>            
+        </form>
+    </div>
+</body>
+</html>

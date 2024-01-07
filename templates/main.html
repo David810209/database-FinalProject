@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Information</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/selector.css') }}">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 20px;
+            font-size: 24px;
+            /* 增大字體大小 */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 24px;
+            /* 增大字體大小 */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .frame {
+            display: flex;
+            justify-content: space-between;
+            font-size: 36px;
+            /* 增大字體大小 */
+        }
+
+        .left,
+        .right {
+            font-size: 36px;
+            /* 增大字體大小 */
+        }
+
+        .section-title {
+            margin-top: 20px;
+            font-size: 36px;
+            /* 增大字體大小 */
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 600px) {
+
+            table,
+            th,
+            td {
+                width: 100%;
+                display: block;
+            }
+
+            th {
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                border: 1px solid #ccc;
+            }
+
+            td {
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td:before {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+            }
+
+            td:nth-of-type(1):before {
+                content: "Ticket ID";
+            }
+
+            td:nth-of-type(2):before {
+                content: "Ticket Name";
+            }
+
+            td:nth-of-type(3):before {
+                content: "Percentage";
+            }
+
+            td:nth-of-type(4):before {
+                content: "Section";
+            }
+
+            td:nth-of-type(5):before {
+                content: "Info";
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <div class="left"> My Stock Information</div>
+        <div class="right">
+            <button id='logoutbutton' class='btn'>log out</button>
+            <script>
+                document.getElementById('logoutbutton').addEventListener('click', function () {
+                    var logout = confirm("确定要登出吗？");
+                    if (logout) {
+                        window.location.href = '/login';
+                    }
+                });
+            </script>
+        </div>
+    </div>
+    <div class="welcome">
+        <div class="section-title">Subscribed Stocks</div>
+        <table>
+            <tr>
+                <th>Portfolio ID</th>
+                <th>Ticker ID</th>
+                <th>Amount</th>
+                <th>Percentage</th>
+            </tr>
+            {% for row in subscribed_stocks_data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <!-- My Stocks -->
+    <div class="welcome">
+        <div class="section-title">Purchased Stocks</div>
+        <table>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Ticket Name</th>
+                <th>GICS Sector</th>
+                <th>Percentage</th>
+            </tr>
+            {% for row in purchased_stocks_data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- Subscribed Stocks -->
+
+</body>
+
+</html>

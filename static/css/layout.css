@@ -1,0 +1,100 @@
+.container {
+    display: flex; /* 啟用 Flexbox */
+    background-color: #aad0aaE6; /* 淡藍色背景 */
+    margin: 0%;
+    margin-bottom: 0%;
+}
+
+.block1, .block2 {
+    flex: 1; /* 兩個區塊將平均分配空間 */
+    height: 100vh; /* 設定區塊高度，例如視窗高度的 100% */
+    border: none;
+    padding: 0%;
+}
+
+.block1 {
+    background-color: #FFD700; /* 金色背景 */
+}
+
+.block2 {
+    position: relative;
+    background-color: #ADD8E6; /* 淡藍色背景 */
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}   
+
+form {
+    font-size: 50px;
+    
+    background-color: #a6c5e2; /* 白色背景突出表單 */
+    padding: 5%;
+    border-radius: 8px; /* 圓角邊框 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 輕微的陰影效果 */
+    width: 70%;
+    height:30%;
+    /* margin: 40px auto; 水平居中 */
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0px;
+    position: relative;
+    
+}
+.username{
+    /* background-color: #FFD700; */
+    position: absolute;
+    top:20%;
+    width: 85%;
+    height: 30%;
+    font-size: 60px;
+    text-align: left;
+    justify-content: center;
+}
+.password{
+    /* background-color: aqua; */
+    position: absolute;
+    top:50%;
+    width: 85%;
+    height: 30%;
+    font-size: 60px;
+    text-align: left;
+}
+.Signup{
+    font-size: 80px;
+    font-weight: bold;
+    /* background-color: aquamarine; */
+    position: absolute;
+    top:5%;
+    width: 85%;
+    height: 10%;
+    color: #110e41e6;
+}
+/* 輸入框樣式 */
+input[type="text"], input[type="password"] {
+    font-size: 40px;
+    height: 40%;
+    width:100%;
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px; /* 底部邊距 */
+    border: 1px solid #cfddef; /* 細邊框 */
+    border-radius: 4px; /* 輕微的圓角 */
+}
+
+/* 新增按鈕容器樣式 */
+.button-container {
+    position: absolute;
+    font-size: 50px;
+    bottom: 6%;
+    right:8%;
+    display: flex;
+    height: 15%;
+    width:25%;
+    /* text-align: right; */
+}
+.block2 button{
+    font-size: 50px;
+    border-radius: 8px; /* 圓角邊框 */
+    height: 100%;
+    width:100%;
+}
